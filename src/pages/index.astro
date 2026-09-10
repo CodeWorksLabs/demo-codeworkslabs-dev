@@ -1,0 +1,71 @@
+---
+import "../styles.css";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const platforms = [
+  { name: "Astro", status: "Studio previews", description: "Static sites, publishing patterns, integrations, and documentation experiments.", href: "https://astro.demo.codeworkslabs.dev/", color: "cyan" },
+  { name: "Discourse", status: "Referenced demo", description: "Theme components and community-interface work, including Brand Navigation.", href: "https://discourse.demo.codeworkslabs.dev/", color: "coral" },
+  { name: "Ghost", status: "In preparation", description: "Publishing, membership, newsletters, content APIs, themes, and integrations.", color: "violet" },
+  { name: "Hugo", status: "In preparation", description: "Fast static publishing, content architecture, build pipelines, and portable delivery.", color: "amber" },
+  { name: "Statamic", status: "In preparation", description: "Structured content, editorial workflows, and Laravel-backed extensions and integrations.", color: "mint" },
+  { name: "WordPress", status: "In preparation", description: "Themes, plugins, block-editor experiences, publishing systems, and integrations.", color: "blue" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Choose a CodeWorksLabs product demonstration by platform." />
+    <title>CodeWorksLabs Demos</title>
+  </head>
+  <body>
+    <header>
+      <a href="https://codeworkslabs.dev/">CWL / LABS</a>
+      <div class="header-navs">
+        <nav aria-label="Primary navigation">
+          <a href="https://codeworkslabs.dev/products/">Products</a>
+          <a href="https://codeworkslabs.dev/platforms/">Platforms</a>
+          <a href="https://demo.codeworkslabs.dev/" aria-current="page">Demos</a>
+          <a href="https://docs.codeworkslabs.dev/">Docs</a>
+        </nav>
+        <nav class="utility-navigation" aria-label="Help and community">
+          <a href="https://codeworkslabs.dev/blog/">Blog</a>
+          <a href="https://codeworkslabs.dev/support/">Support</a>
+          <a href="https://forum.codeworkslabs.dev/">Forum ↗</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">DEMO SIGNAL / 001</p>
+        <h1>Choose a platform.<br /><em>See the work move.</em></h1>
+        <p>Demonstrations are grouped by the platform they exercise. Live destinations open their demo collection; upcoming collections remain visible so the direction of the lab is clear.</p>
+      </section>
+      <section class="platforms" aria-label="Demonstration platforms">
+        {platforms.map((platform, index) => {
+          const content = <>
+            <span>0{index + 1}</span>
+            <p>{platform.status}</p>
+            <h2>{platform.name}</h2>
+            <div>{platform.description}</div>
+            <b>{platform.href ? "Enter platform ↗" : "Demo collection in preparation"}</b>
+          </>;
+
+          return platform.href
+            ? <a class={`platform ${platform.color}`} href={platform.href} aria-label={`Open ${platform.name} demonstration hub`}>{content}</a>
+            : <article class={`platform planned ${platform.color}`}>{content}</article>;
+        })}
+      </section>
+      <section class="future">
+        <p>THE PATTERN</p>
+        <h2><span>platform</span>.demo.codeworkslabs.dev</h2>
+        <p>Each platform is already part of the lab. Its dedicated demo address appears when there is useful, verified work to inspect—present capability without a fictional destination.</p>
+      </section>
+    </main>
+    <SiteFooter />
+  </body>
+</html>
+
+<style>.header-navs{display:flex;align-items:center;gap:1.5rem}.utility-navigation{gap:.55rem}.utility-navigation a{padding:.42rem .62rem;border:1px solid var(--line);color:var(--cyan)}.utility-navigation a:last-child{border-color:rgba(255,107,87,.55);color:var(--coral)}@media(max-width:700px){header{gap:1rem;flex-wrap:wrap}.header-navs{width:100%;flex-wrap:wrap;gap:.75rem}.header-navs nav:first-child{width:100%;gap:.75rem;justify-content:space-between}.utility-navigation{gap:.55rem}}</style>

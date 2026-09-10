@@ -1,0 +1,9 @@
+{
+  "name": "codeworkslabs-demo-index",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview", "deploy:dry-run": "wrangler deploy --dry-run --config wrangler.jsonc", "deploy": "wrangler deploy --config wrangler.jsonc --strict" },
+  "dependencies": { "astro": "^7.1.1" },
+  "devDependencies": { "wrangler": "4.123.0" }
+}
